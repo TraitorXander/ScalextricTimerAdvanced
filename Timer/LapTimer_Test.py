@@ -1,9 +1,9 @@
 import sys
 import os
 from time import sleep
-
-#sys.path.append(".")
 from LapTimer import LapTimer
+sys.path.append(".")
+from Common import HelperMethods as HP
 
 
 def test_1():
@@ -11,7 +11,7 @@ def test_1():
         print("Test 1...\n")
         timer_1 = LapTimer()
         timer_1.start()
-        sleep(sec_to_ms(2355))
+        sleep(HP.sec_to_ms(2355))
         timer_1.stop()
         print(str(timer_1.get_time_elapsed()) + "s")
 
@@ -19,8 +19,6 @@ def test_1():
         print(str(type(exc)) + "\n" + str(exc))
 
 
-def sec_to_ms(sec):
-    return sec / 1000.0
 
 
 if __name__ == "__main__":
