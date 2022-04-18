@@ -11,12 +11,14 @@ namespace ScalextricLapTimer
     public class SerialComms
     {
         private SerialPort serialPort;
-        public string Port { get; private set; } = "COM5";
-        public int BaudRate { get; private set; } = 9600;
+        public string Port { get; set; }
+        public int BaudRate { get; set; }
         public string LastMessage { get; private set; }
         public int LightLevel { get; private set; }
         public int LightLevelAverage { get; private set; }
         public double LastTime { get; private set; }
+        public double LiveTime { get; private set; }
+        public int InvalidMsgCount { get; private set; }
 
         public SerialComms()
         {
@@ -99,33 +101,41 @@ namespace ScalextricLapTimer
             string[] splitData = msg.Split(MSG_DELIM);
             switch (splitData[0])
             {
-                case ("SMES"):
-                    if (splitData[1] == "0")
+                // TIME [current light level] [average light level] [live time]
+                case ("TIME"):
+                    if (splitData.Length == 5)
                     {
-                        if (splitData.Length == 4)
-                        {
-                            LightLevel = Convert.ToInt32(splitData[2]);
-                            LightLevelAverage = Convert.ToInt32(splitData[3]);
-                        }
-                        else
-                        {
-                            LightLevel = -9999;
-                            LightLevelAverage = -9999;
-                        }
+                        LightLevel = Convert.ToInt32(splitData[1]);
+                        LightLevelAverage = Convert.ToInt32(splitData[2]);
+                        LiveTime = Convert.ToDouble(splitData[3]) / 1000;
+                        LastTime = Convert.ToDouble(splitData[4]) / 1000;
+
                     }
-                    else if (splitData[1] == "1")
+                    else
                     {
-                        if (splitData.Length == 3)
-                        {
-                            LastTime = Convert.ToDouble(splitData[2])/1000;
-                        }
-                        else
-                        {
-                            LastTime = -9999;
-                        }
+                        InvalidMsgCount++;
+                        LightLevel = -9999;
+                        LightLevelAverage = -9999;
                     }
+                    break;
+                // Time message
+                // TIME [time since last trigger]
+                //case ("TIME"):
+                //    if (splitData.Length == 2)
+                //    {
+                //        LastTime = Convert.ToDouble(splitData[1]) / 1000;
+                //    }
+                //    else
+                //    {
+                //        InvalidMsgCount++;
+                //        LastTime = -9999;
+                //    }
+                //    break;
+                default:
+                    InvalidMsgCount++;
                     break;
             }
         }
     }
 }
+

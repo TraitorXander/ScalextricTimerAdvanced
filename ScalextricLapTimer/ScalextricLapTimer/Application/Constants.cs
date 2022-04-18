@@ -21,4 +21,24 @@ namespace ScalextricLapTimer
 
         public const char MSG_DELIM = ' ';
     }
+
+    public static class Helper
+    {
+        public static bool SettingsValid()
+        {
+            SerialComms tempSerialComm = new SerialComms();
+
+            if(!tempSerialComm.GetComPorts().Contains(Properties.Settings.Default.COMPort))
+            {
+                return false;
+            }
+
+            if (!tempSerialComm.GetBaudRates().Contains(Properties.Settings.Default.BaudRate.ToString()))
+            {
+                return false;
+            }
+
+            return true;
+        }
+    }
 }

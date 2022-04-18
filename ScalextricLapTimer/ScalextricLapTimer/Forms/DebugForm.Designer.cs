@@ -36,6 +36,7 @@
             this.txtLightLevel = new System.Windows.Forms.TextBox();
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
             this.checkAutoScroll = new System.Windows.Forms.CheckBox();
+            this.txtLiveTime = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridMsg)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +51,7 @@
             this.gridMsg.Name = "gridMsg";
             this.gridMsg.ReadOnly = true;
             this.gridMsg.RowHeadersVisible = false;
-            this.gridMsg.Size = new System.Drawing.Size(320, 476);
+            this.gridMsg.Size = new System.Drawing.Size(320, 206);
             this.gridMsg.TabIndex = 9;
             // 
             // col1
@@ -62,14 +63,14 @@
             // 
             // txtLastTime
             // 
-            this.txtLastTime.Location = new System.Drawing.Point(338, 97);
+            this.txtLastTime.Location = new System.Drawing.Point(338, 113);
             this.txtLastTime.Name = "txtLastTime";
             this.txtLastTime.Size = new System.Drawing.Size(263, 20);
             this.txtLastTime.TabIndex = 12;
             // 
             // txtLightLevelAverage
             // 
-            this.txtLightLevelAverage.Location = new System.Drawing.Point(338, 66);
+            this.txtLightLevelAverage.Location = new System.Drawing.Point(338, 61);
             this.txtLightLevelAverage.Name = "txtLightLevelAverage";
             this.txtLightLevelAverage.Size = new System.Drawing.Size(263, 20);
             this.txtLightLevelAverage.TabIndex = 11;
@@ -89,6 +90,8 @@
             // checkAutoScroll
             // 
             this.checkAutoScroll.AutoSize = true;
+            this.checkAutoScroll.Checked = true;
+            this.checkAutoScroll.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkAutoScroll.Location = new System.Drawing.Point(338, 12);
             this.checkAutoScroll.Name = "checkAutoScroll";
             this.checkAutoScroll.Size = new System.Drawing.Size(77, 17);
@@ -96,11 +99,19 @@
             this.checkAutoScroll.Text = "Auto Scroll";
             this.checkAutoScroll.UseVisualStyleBackColor = true;
             // 
+            // txtLiveTime
+            // 
+            this.txtLiveTime.Location = new System.Drawing.Point(338, 87);
+            this.txtLiveTime.Name = "txtLiveTime";
+            this.txtLiveTime.Size = new System.Drawing.Size(263, 20);
+            this.txtLiveTime.TabIndex = 14;
+            // 
             // DebugForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(614, 500);
+            this.ClientSize = new System.Drawing.Size(614, 234);
+            this.Controls.Add(this.txtLiveTime);
             this.Controls.Add(this.checkAutoScroll);
             this.Controls.Add(this.txtLastTime);
             this.Controls.Add(this.txtLightLevelAverage);
@@ -123,5 +134,6 @@
         private System.Windows.Forms.TextBox txtLightLevel;
         private System.Windows.Forms.Timer timerRefresh;
         private System.Windows.Forms.CheckBox checkAutoScroll;
+        private System.Windows.Forms.TextBox txtLiveTime;
     }
 }

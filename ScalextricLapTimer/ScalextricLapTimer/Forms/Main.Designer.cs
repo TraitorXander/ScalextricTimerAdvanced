@@ -37,10 +37,9 @@
             this.subitemConnectionSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.itemExtras = new System.Windows.Forms.ToolStripMenuItem();
             this.subitemDebugWindow = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnClosePort = new System.Windows.Forms.Button();
-            this.comboBaud = new System.Windows.Forms.ComboBox();
-            this.comboPort = new System.Windows.Forms.ComboBox();
-            this.btnOpenPort = new System.Windows.Forms.Button();
+            this.lblLast = new System.Windows.Forms.Label();
+            this.lblCurrent = new System.Windows.Forms.Label();
+            this.lblLive = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +54,7 @@
             this.itemExtras});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(667, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(818, 24);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -74,18 +73,21 @@
             this.subitemConnect.Name = "subitemConnect";
             this.subitemConnect.Size = new System.Drawing.Size(181, 22);
             this.subitemConnect.Text = "Connect";
+            this.subitemConnect.Click += new System.EventHandler(this.subitemConnect_Click);
             // 
             // subitemDisconnect
             // 
             this.subitemDisconnect.Name = "subitemDisconnect";
             this.subitemDisconnect.Size = new System.Drawing.Size(181, 22);
             this.subitemDisconnect.Text = "Disconnect";
+            this.subitemDisconnect.Click += new System.EventHandler(this.subitemDisconnect_Click);
             // 
             // subitemConnectionSettings
             // 
             this.subitemConnectionSettings.Name = "subitemConnectionSettings";
             this.subitemConnectionSettings.Size = new System.Drawing.Size(181, 22);
             this.subitemConnectionSettings.Text = "Connection Settings";
+            this.subitemConnectionSettings.Click += new System.EventHandler(this.subitemConnectionSettings_Click);
             // 
             // itemExtras
             // 
@@ -102,52 +104,41 @@
             this.subitemDebugWindow.Text = "Debug Window (Show/Hide)";
             this.subitemDebugWindow.Click += new System.EventHandler(this.subitemDebugWindow_Click);
             // 
-            // btnClosePort
+            // lblLast
             // 
-            this.btnClosePort.Enabled = false;
-            this.btnClosePort.Location = new System.Drawing.Point(419, 51);
-            this.btnClosePort.Name = "btnClosePort";
-            this.btnClosePort.Size = new System.Drawing.Size(132, 56);
-            this.btnClosePort.TabIndex = 12;
-            this.btnClosePort.Text = "Close COM Port";
-            this.btnClosePort.UseVisualStyleBackColor = true;
-            this.btnClosePort.Click += new System.EventHandler(this.btnClosePort_Click_1);
+            this.lblLast.AutoSize = true;
+            this.lblLast.Location = new System.Drawing.Point(34, 53);
+            this.lblLast.Name = "lblLast";
+            this.lblLast.Size = new System.Drawing.Size(76, 17);
+            this.lblLast.TabIndex = 6;
+            this.lblLast.Text = "Last Time:";
             // 
-            // comboBaud
+            // lblCurrent
             // 
-            this.comboBaud.FormattingEnabled = true;
-            this.comboBaud.Location = new System.Drawing.Point(47, 82);
-            this.comboBaud.Name = "comboBaud";
-            this.comboBaud.Size = new System.Drawing.Size(228, 25);
-            this.comboBaud.TabIndex = 11;
+            this.lblCurrent.AutoSize = true;
+            this.lblCurrent.Location = new System.Drawing.Point(34, 95);
+            this.lblCurrent.Name = "lblCurrent";
+            this.lblCurrent.Size = new System.Drawing.Size(97, 17);
+            this.lblCurrent.TabIndex = 7;
+            this.lblCurrent.Text = "Current Time:";
             // 
-            // comboPort
+            // lblLive
             // 
-            this.comboPort.FormattingEnabled = true;
-            this.comboPort.Location = new System.Drawing.Point(47, 51);
-            this.comboPort.Name = "comboPort";
-            this.comboPort.Size = new System.Drawing.Size(228, 25);
-            this.comboPort.TabIndex = 10;
-            // 
-            // btnOpenPort
-            // 
-            this.btnOpenPort.Location = new System.Drawing.Point(281, 51);
-            this.btnOpenPort.Name = "btnOpenPort";
-            this.btnOpenPort.Size = new System.Drawing.Size(132, 56);
-            this.btnOpenPort.TabIndex = 9;
-            this.btnOpenPort.Text = "Open COM Port";
-            this.btnOpenPort.UseVisualStyleBackColor = true;
-            this.btnOpenPort.Click += new System.EventHandler(this.btnOpenPort_Click_1);
+            this.lblLive.AutoSize = true;
+            this.lblLive.Location = new System.Drawing.Point(34, 148);
+            this.lblLive.Name = "lblLive";
+            this.lblLive.Size = new System.Drawing.Size(74, 17);
+            this.lblLive.TabIndex = 8;
+            this.lblLive.Text = "Live Time:";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 672);
-            this.Controls.Add(this.btnClosePort);
-            this.Controls.Add(this.comboBaud);
-            this.Controls.Add(this.comboPort);
-            this.Controls.Add(this.btnOpenPort);
+            this.ClientSize = new System.Drawing.Size(818, 415);
+            this.Controls.Add(this.lblLive);
+            this.Controls.Add(this.lblCurrent);
+            this.Controls.Add(this.lblLast);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip1;
@@ -172,10 +163,9 @@
         private System.Windows.Forms.ToolStripMenuItem subitemConnectionSettings;
         private System.Windows.Forms.ToolStripMenuItem itemExtras;
         private System.Windows.Forms.ToolStripMenuItem subitemDebugWindow;
-        private System.Windows.Forms.Button btnClosePort;
-        private System.Windows.Forms.ComboBox comboBaud;
-        private System.Windows.Forms.ComboBox comboPort;
-        private System.Windows.Forms.Button btnOpenPort;
+        private System.Windows.Forms.Label lblLast;
+        private System.Windows.Forms.Label lblCurrent;
+        private System.Windows.Forms.Label lblLive;
     }
 }
 
